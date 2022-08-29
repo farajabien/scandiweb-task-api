@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+require('dotenv').config()
 
 const db = require('./models')
 
@@ -9,11 +10,14 @@ app.use(cors())
 
 app.use(express.json())
 
-db.sequelize.sync().then(() => {
-	app.listen(3001, () => {
-		console.log('Server running on port 3001')
+db.sequelize
+	.sync()
+	.then(() => {
+		app.listen(process.env.PORT || 3001, () => {
+			console.log('Server running on port 3001')
+		})
 	})
-})
+	.catch((err) => console.error(err))
 
 //route that gets all products in the DB and returns them as json
 app.get('/products', (req, res) => {
