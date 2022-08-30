@@ -14,7 +14,7 @@ db.sequelize
 	.sync()
 	.then(() => {
 		app.listen(process.env.PORT || 3001, () => {
-			console.log('Server running on port 3001')
+			console.log('Server running on port 3001...')
 		})
 	})
 	.catch((err) => console.error(err))
@@ -41,7 +41,7 @@ app.delete('/products', (req, res) => {
 	const ids = req.body.deletedItemsIds
 	db.Product.destroy({ where: { id: ids } })
 		.then(() => {
-			res.json('Deleted successfully!')
+			res.json('Deleted successfully!!ß')
 		})
 		.catch((err) => {
 			res.status(404).json(err)
